@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Arba Solutions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f6f8fb;--fg:#0b1220;--mut:#5b667a;--blue:#1f5fff;--card:#fff;--line:#e3e8f0;--hb:255,255,255;color-scheme:light;box-sizing:border-box;padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{background:var(--bg);color:var(--fg);font-family:Sora,system-ui,sans-serif;line-height:1.55;overflow-x:hidden}
+em{font-style:normal;color:var(--blue)}
+a{color:inherit;text-decoration:none}
+section{padding:120px 6vw;position:relative}
+h2{font-size:clamp(2rem,5vw,4rem);line-height:1.08;font-weight:800;letter-spacing:-.03em}
+.rv{opacity:0;transform:translateY(30px);transition:.9s cubic-bezier(.2,.7,.2,1)}.rv.on{opacity:1;transform:none}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:15px 28px;border-radius:999px;background:var(--blue);color:#fff;font-weight:600;border:0;cursor:pointer;font:600 1rem Sora,sans-serif;transition:.35s;position:relative;box-shadow:0 0 0 0 rgba(31,95,255,.5);animation:glow 2.6s infinite}
+.btn:hover{transform:translateY(-3px) scale(1.03)}
+@keyframes glow{0%,100%{box-shadow:0 0 0 0 rgba(31,95,255,.45),0 10px 30px rgba(31,95,255,.25)}50%{box-shadow:0 0 0 14px rgba(31,95,255,0),0 10px 40px rgba(31,95,255,.4)}}
+#intro{position:fixed;inset:0;z-index:100;background:var(--bg);display:grid;place-content:center;text-align:center;transition:transform 1.2s cubic-bezier(.77,0,.18,1)}
+#intro.up{transform:translateY(-100%)}
+#intro p{font-weight:300;letter-spacing:.3em;text-transform:uppercase;color:var(--mut);animation:in 1s .2s both}
+#intro h1{font-size:clamp(2.6rem,9vw,6.5rem);font-weight:800;letter-spacing:-.04em;animation:in 1.2s .7s both}
+@keyframes in{from{opacity:0;transform:translateY(24px);filter:blur(8px)}}
+header{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:calc(env(safe-area-inset-top,0px) + 16px) 4vw 16px;background:rgba(var(--hb),calc(var(--p,0)*.82));backdrop-filter:blur(calc(var(--p,0)*16px));-webkit-backdrop-filter:blur(calc(var(--p,0)*16px));border-bottom:1px solid rgba(128,140,160,calc(var(--p,0)*.25));box-shadow:0 6px 24px rgba(10,20,50,calc(var(--p,0)*.05))}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:-.02em}
+.mark{width:30px;height:30px;border-radius:9px;background:var(--blue);display:grid;place-items:center;transition:.4s}
+.mark:hover{box-shadow:0 0 22px rgba(31,95,255,.6);transform:scale(1.1) rotate(8deg)}
+.mark i{width:12px;height:12px;border:2.5px solid #fff;border-radius:3px;transform:rotate(45deg)}
+nav ul{display:flex;gap:6px;list-style:none;align-items:center}
+nav a.l{position:relative;padding:8px 14px;border-radius:999px;font-size:.9rem;display:block;transition:.3s}
+nav a.l:hover{background:rgba(31,95,255,.08)}
+nav a.l.act::after{content:"";position:absolute;left:50%;bottom:-3px;width:5px;height:5px;margin-left:-2.5px;border-radius:50%;background:var(--blue)}
+nav a.ct{background:var(--fg);color:var(--bg);padding:9px 20px}
+nav a.ct:hover{background:var(--blue);color:#fff;transform:translateY(-2px)}
+.dd{position:relative}
+.dd div{position:absolute;top:100%;left:0;min-width:260px;padding:8px;background:var(--card);border:1px solid var(--line);border-radius:16px;box-shadow:0 20px 50px rgba(10,20,50,.12);opacity:0;visibility:hidden;transform:translateY(10px);transition:.3s}
+.dd:hover div,.dd:focus-within div{opacity:1;visibility:visible;transform:none}
+.dd div a{display:block;padding:10px 14px;border-radius:10px;font-size:.88rem}.dd div a:hover{background:rgba(31,95,255,.08);color:var(--blue)}
+.rt{display:flex;gap:12px;align-items:center}
+#lang{background:none;border:1px solid var(--line);color:var(--fg);padding:6px 12px;border-radius:999px;font:600 .8rem Sora;cursor:pointer}
+#bg{display:none;background:none;border:0;color:var(--fg);font-size:1.6rem;cursor:pointer}
+#inicio{min-height:100vh;display:grid;place-items:center;text-align:center;padding-top:100px;overflow:hidden}
+#inicio:before{content:"";position:absolute;width:60vmin;height:60vmin;border-radius:50%;background:radial-gradient(circle,rgba(31,95,255,.18),transparent 65%);top:20%;left:50%;transform:translateX(-50%);z-index:0}
+.hi{position:relative;max-width:900px;z-index:1}
+.hi h1{font-size:clamp(2.5rem,7vw,5.5rem);line-height:1.02;font-weight:800;letter-spacing:-.04em}
+.hi h3{margin-top:34px;font-size:clamp(1.3rem,3vw,2rem);font-weight:300;color:var(--mut)}
+.hi h3 em{font-weight:800;text-shadow:0 0 24px rgba(31,95,255,.4);display:inline-block;animation:fl 4s ease-in-out infinite}
+@keyframes fl{50%{transform:translateY(-4px)}}
+.tag{position:absolute;right:4vw;bottom:5vh;font-size:.85rem;color:var(--mut);display:flex;align-items:center;gap:12px}.tag:before{content:"";width:44px;height:1px;background:var(--blue)}
+#servicos{padding-left:3vw;padding-right:3vw}
+.sg{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:50px}
+.sc{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:40px 30px;min-height:220px;cursor:pointer;transition:.5s;text-align:left;color:var(--fg);font-family:inherit}
+.sc b{display:block;color:var(--blue);margin-bottom:60px}.sc h3{font-size:1.6rem;line-height:1.15;letter-spacing:-.02em}
+.sg.has .sc{opacity:.45;transform:scale(.96);filter:blur(.6px)}.sg.has .sc.sel{opacity:1;transform:none;filter:none;border-color:var(--blue);box-shadow:0 20px 60px rgba(31,95,255,.15)}
+.sd{display:grid;grid-template-columns:1fr 1.1fr;gap:5vw;margin-top:30px;overflow:hidden;max-height:0;opacity:0;transition:.8s}.sd.open{max-height:1400px;opacity:1}
+.vis{perspective:900px;display:grid;place-items:center;min-height:320px}
+.vc{width:min(100%,380px);aspect-ratio:1;border-radius:28px;background:linear-gradient(135deg,#1f5fff,#0b1d5c);position:relative;transition:transform .15s;transform-style:preserve-3d;box-shadow:0 30px 60px rgba(31,95,255,.3)}
+.vc span{position:absolute;border-radius:18px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.3);transition:.2s}
+.vc span:nth-child(1){inset:14% 30% 40% 12%;transform:translateZ(40px)}.vc span:nth-child(2){inset:40% 12% 14% 36%;transform:translateZ(80px);background:rgba(255,255,255,.22)}.vc span:nth-child(3){width:60px;height:60px;border-radius:50%;top:10%;right:12%;transform:translateZ(110px)}
+.st h4{color:var(--blue);font-size:.78rem;text-transform:uppercase;letter-spacing:.15em;margin:22px 0 4px}.st h4:first-child{margin-top:0}.st p{color:var(--mut)}
+#casos h2 span{display:block}
+.ar{display:flex;gap:10px;margin:20px 0}.ar button{width:48px;height:48px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--fg);font-size:1.2rem;cursor:pointer;transition:.3s}.ar button:hover{background:var(--blue);color:#fff}
+.tr{display:flex;gap:24px;overflow-x:auto;scroll-snap-type:x mandatory;padding:10px 2px 30px;scrollbar-width:none}.tr::-webkit-scrollbar{display:none}
+.cc{flex:0 0 min(420px,82vw);scroll-snap-align:start;background:var(--card);border:1px solid var(--line);border-radius:24px;padding:16px;transition:.4s}.cc:hover{transform:translateY(-8px);box-shadow:0 24px 50px rgba(10,20,50,.1)}
+.mk{aspect-ratio:4/3;border-radius:16px;position:relative;overflow:hidden}.mk:after{content:"";position:absolute;inset:18% 12% 0;background:rgba(255,255,255,.9);border-radius:10px 10px 0 0;box-shadow:0 -10px 30px rgba(0,0,0,.15)}
+.tg{display:flex;gap:6px;margin:16px 0 8px;flex-wrap:wrap}.tg i,.tk i{font-style:normal;font-size:.72rem;padding:4px 11px;border-radius:99px;background:rgba(31,95,255,.1);color:var(--blue);font-weight:600}
+.cc h3{font-size:1.3rem}.cc p{color:var(--mut);font-size:.92rem;margin:6px 0 16px}.cc a{color:var(--blue);font-weight:600;cursor:pointer}
+.tk{display:flex;gap:8px;flex-wrap:wrap}
+.cl{text-align:center;max-width:800px;margin:60px auto 0}.cl blockquote{font-size:clamp(1.2rem,2.6vw,1.8rem);font-weight:300;line-height:1.4}.cl blockquote:before{content:"“";display:block;font-size:5rem;line-height:.6;color:var(--blue)}.cl small{display:block;margin:16px 0 60px;color:var(--mut)}.cl h2{margin-bottom:30px;font-size:clamp(1.8rem,4vw,3rem)}
+.modal{position:fixed;inset:0;z-index:80;background:var(--bg);overflow:auto;padding:90px 6vw 60px;transform:translateY(100%);transition:.8s cubic-bezier(.77,0,.18,1)}.modal.open{transform:none}
+.x{position:fixed;top:20px;right:4vw;z-index:90;width:46px;height:46px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--fg);font-size:1.3rem;cursor:pointer}
+.mo h2{margin-bottom:20px}.gal{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:40px 0}.gal div{aspect-ratio:4/3;border-radius:18px;transition:.4s}.gal div:hover{transform:scale(1.04) rotate(-.6deg)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:5vw;margin-top:50px}.two h4{margin-bottom:10px}
+#faq{display:grid;grid-template-columns:1fr 1.3fr;gap:6vw}
+#faq h2{font-size:clamp(1.8rem,4vw,3.2rem);position:sticky;top:110px}#faq .sub{color:var(--mut);margin-top:16px}
+.q{border:1px solid var(--line);background:var(--card);border-radius:18px;margin-bottom:12px;cursor:pointer;transition:.3s}.q:hover{border-color:var(--blue)}
+.q>div:first-child{display:flex;justify-content:space-between;gap:16px;padding:22px 26px;font-weight:600}.q b{color:var(--blue);font-size:1.4rem;transition:.4s}.q.open b{transform:rotate(45deg)}
+.q .a{max-height:0;overflow:hidden;transition:.5s;padding:0 26px;color:var(--mut)}.q.open .a{max-height:400px;padding-bottom:24px}
+#sobre{text-align:center}.ab{max-width:720px;margin:40px auto 80px;color:var(--mut);font-size:1.2rem}
+.pg{max-width:900px;margin:0 auto;text-align:left}.pil{display:grid;grid-template-columns:120px 1fr;gap:30px;padding:38px 0;border-top:1px solid var(--line);position:relative;opacity:.35;transition:.8s}.pil:after{content:"";position:absolute;top:-1px;left:0;height:2px;width:0;background:var(--blue);transition:1.2s}
+.pil.on{opacity:1}.pil.on:after{width:100%}.pil strong{font-size:4rem;font-weight:800;color:var(--line);transition:.8s;line-height:1}.pil.on strong{color:var(--blue)}.pil h3{font-size:1.5rem}.pil p{color:var(--mut)}
+.end{margin-top:100px}
+#contato{display:grid;grid-template-columns:1.2fr 1fr;gap:6vw;align-items:center;min-height:80vh}
+.cd{background:var(--card);border:1px solid var(--line);border-radius:28px;padding:44px;box-shadow:0 30px 70px rgba(31,95,255,.08)}.cd h3{font-size:1.8rem;line-height:1.2}.cd p{color:var(--mut);margin:12px 0 28px}
+footer{padding:60px 6vw calc(40px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--line);display:flex;flex-wrap:wrap;gap:40px;justify-content:space-between;color:var(--mut);font-size:.9rem}footer b{color:var(--fg);font-size:1.2rem}footer ul{list-style:none;display:flex;flex-direction:column;gap:6px}footer a:hover{color:var(--blue)}.cp{width:100%;text-align:center;font-size:.8rem}
+@media(max-width:900px){#bg{display:block}nav{position:fixed;inset:0 0 auto 0;top:0;padding:90px 6vw 30px;background:var(--card);transform:translateY(-110%);transition:.5s;z-index:-1;border-bottom:1px solid var(--line)}nav.open{transform:none}nav ul{flex-direction:column;align-items:flex-start}.dd div{position:static;opacity:1;visibility:visible;transform:none;box-shadow:none;border:0;padding:0 0 0 14px}
+.sg,.sd,.two,#faq,#contato,.gal{grid-template-columns:1fr}#faq h2{position:static}.pil{grid-template-columns:70px 1fr}.pil strong{font-size:2.6rem}.tag{position:static;justify-content:center;margin-top:40px}section{padding:90px 6vw}.btn{padding:17px 30px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition-duration:.01s!important}}
+</style>
+</head>
+<body>
+<div id="intro"><p data-i="wel"></p><h1>Arba <em>Solutions</em></h1></div>
+<header id="hd">
+ <a href="#inicio" class="logo"><span class="mark"><i></i></span>Arba Solutions</a>
+ <nav id="nv"><ul>
+  <li><a class="l" href="#inicio" data-i="n1"></a></li>
+  <li class="dd"><a class="l" href="#servicos" data-i="n2"></a><div><a href="#servicos" data-s="0" data-i="s0"></a><a href="#servicos" data-s="1" data-i="s1"></a><a href="#servicos" data-s="2" data-i="s2"></a></div></li>
+  <li><a class="l" href="#casos" data-i="n3"></a></li>
+  <li><a class="l" href="#sobre" data-i="n4"></a></li>
+  <li><a class="l ct" href="#contato" data-i="n5"></a></li>
+ </ul></nav>
+ <div class="rt"><button id="lang" aria-label="Language">PT</button><button id="bg" aria-label="Menu">☰</button></div>
+</header>
+
+<section id="inicio"><div class="hi" id="hi">
+ <h1 data-i="h1"></h1><h3><span data-i="h2a"></span><br><span data-i="h2b"></span></h3></div>
+ <div class="tag" data-i="tag"></div></section>
+
+<section id="servicos">
+ <div class="sg" id="sg"></div>
+ <div class="sd" id="sd"><div class="vis"><div class="vc" id="vc"><span></span><span></span><span></span></div></div><div class="st" id="st"></div></div>
+</section>
+
+<section id="casos">
+ <h2 class="rv"><span data-i="c1"></span><em data-i="c2"></em></h2>
+ <div class="ar"><button id="pv" aria-label="Prev">←</button><button id="nx" aria-label="Next">→</button></div>
+ <div class="tr" id="tr"></div>
+ <div class="cl rv"><blockquote data-i="dep"></blockquote><small data-i="depa"></small>
+  <h2 data-i="cta"></h2><a class="btn wa" target="_blank" rel="noopener" data-i="wa"></a></div>
+</section>
+
+<section id="faq"><div><h2 data-i="fh"></h2><p class="sub" data-i="fs"></p></div><div id="fl"></div></section>
+
+<section id="sobre">
+ <h2 class="rv" data-i="ab1"></h2><p class="ab rv" data-i="ab2"></p>
+ <div class="pg" id="pg"></div>
+ <h2 class="end rv" data-i="ab3"></h2>
+</section>
+
+<section id="contato">
+ <h2 class="rv" data-i="ct1"></h2>
+ <div class="cd rv"><h3 data-i="ct2"></h3><p data-i="ct3"></p><a class="btn wa" target="_blank" rel="noopener" data-i="wa"></a></div>
+</section>
+
+<footer>
+ <div><b>Arba Solutions</b><p data-i="fd"></p></div>
+ <ul><li><a href="#inicio" data-i="n1"></a></li><li><a href="#servicos" data-i="n2"></a></li><li><a href="#casos" data-i="n3"></a></li><li><a href="#sobre" data-i="n4"></a></li><li><a href="#contato" data-i="n5"></a></li></ul>
+ <ul><li><a class="wa" target="_blank" rel="noopener">WhatsApp</a></li><li><a href="mailto:arba.solucoes@gmail.com">arba.solucoes@gmail.com</a></li><li><a href="https://instagram.com/arba_solutions" target="_blank" rel="noopener">@arba_solutions</a></li></ul>
+ <p class="cp" data-i="cp"></p>
+</footer>
+
+<div class="modal" id="md"><button class="x" id="mx" aria-label="Close">×</button><div class="mo" id="mo"></div></div>
+
+<script>
+const WA="https://wa.me/5591980842520";
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const T={pt:{wel:"Bem vindo a",n1:"Início",n2:"Serviços",n3:"Casos de Sucesso",n4:"Sobre Nós",n5:"Contato",s0:"Desenvolvimento Web e Sites",s1:"Software Sob Medida",s2:"Identidade Visual e Branding",
+h1:"Transformando Ideias em <em>Soluções Digitais</em>",h2a:"Do pensamento",h2b:"à <em>Visibilidade</em>",tag:"Alta performance para cada problema.",
+sv:[{d:"Criamos sites institucionais, lojas virtuais e aplicações web rápidas e elegantes.",w:"Empresas que querem presença digital forte e que converte.",b:"Velocidade, SEO, design premium e experiência impecável.",s:"Sites institucionais, e-commerce, landing pages, otimização de performance."},{d:"Desenvolvemos sistemas, aplicativos e integrações feitos para o seu processo.",w:"Operações que superaram planilhas e ferramentas genéricas.",b:"Eficiência, automação, escalabilidade e controle.",s:"Sistemas web, aplicativos, APIs, integrações e soluções com IA."},{d:"Construímos a base visual estratégica da sua marca.",w:"Negócios novos ou que precisam se reposicionar.",b:"Reconhecimento, coerência e posicionamento claro.",s:"Logos, paleta, guia de marca, postagens e materiais visuais."}],
+lab:["O que fazemos","Para quem é","Benefícios","Principais soluções"],
+c1:"Números que provam.",c2:"Entregas que marcam.",cs:"Ver Estudo de Caso",live:"Ver Projeto ao Vivo",imp:"Impacto gerado",tech:"Tecnologias utilizadas",abt:"Sobre o cliente",
+dep:"Depoimento do cliente aqui. Substitua por um relato real de resultado e experiência.",depa:"Nome do Cliente — Empresa",cta:"Vamos transformar o seu próximo desafio em uma solução?",wa:"Falar pelo WhatsApp",
+fh:"Dúvidas mais frequentes que recebemos",fs:"Reunimos algumas das principais perguntas.",
+faq:[["Que tipos de projetos a Arba desenvolve?","Desenvolvemos sites, lojas virtuais e sistemas web, além de contarmos com uma área especializada em criar e aprimorar a identidade visual da sua empresa, incluindo logos, cores padrão e postagens marcantes."],["Como funciona a construção da identidade visual para a minha empresa?","Realizamos uma análise da sua empresa e identificamos o seu nicho de mercado. A partir disso, construímos uma base visual estratégica para o seu posicionamento. Apresentamos opções e ideias para que você participe do processo e escolha a direção que melhor representa sua empresa e o seu gosto."],["Quanto tempo leva um projeto?","Varia conforme a complexidade. <b>Performance e otimizações:</b> 3 a 5 dias úteis. <b>Sites institucionais:</b> 2 a 4 semanas. <b>Sistemas personalizados, integrações e soluções com IA:</b> cronograma alinhado na proposta técnica após o diagnóstico inicial."],["Como é calculado o custo dos projetos?","Os valores são calculados com base nas necessidades, funcionalidades e requisitos específicos de cada projeto. Dessa forma, conseguimos criar uma proposta adequada à realidade e aos objetivos de cada cliente."],["Vocês atendem todo o Brasil?","Sim. Nossa operação é 100% digital e estruturada para que a distância nunca seja uma barreira. Realizamos reuniões por videoconferência, mantemos canais diretos de acompanhamento e entregamos com a mesma agilidade, independentemente do seu estado."],["Que tipos de serviços e empresas vocês atendem?","Atendemos empresas de diversos portes e segmentos — de negócios locais e profissionais liberais a operações consolidadas e startups em expansão. Nossa metodologia se adapta ao modelo de negócio de cada cliente."]],
+ab1:"Tecnologia não é apenas código.<br><em>É solução.</em>",ab2:"A Arba Solutions nasceu para transformar ideias, desafios e necessidades em soluções digitais que realmente fazem sentido para cada negócio.",
+pl:[["Entendemos","Antes de desenvolver qualquer solução, entendemos o problema, o negócio e as necessidades reais de cada cliente."],["Criamos","Transformamos ideias e desafios em experiências digitais estratégicas e visualmente marcantes."],["Desenvolvemos","Construímos soluções modernas, rápidas, escaláveis e preparadas para acompanhar o crescimento do negócio."],["Evoluímos","Não pensamos apenas na entrega. Pensamos no futuro, na evolução e nas próximas possibilidades."]],
+ab3:"Não desenvolvemos apenas projetos.<br><em>Desenvolvemos possibilidades.</em>",ct1:"Seu problema pode estar a alguns passos da <em>solução.</em>",ct2:"Fale diretamente com quem faz.",ct3:"Dúvidas, orçamentos ou suporte?",fd:"Transformando ideias em soluções digitais.",cp:"© Arba Solutions — Todos os direitos reservados.",
+cases:[["Cliente Exemplo 01","Website","Uma nova presença digital para a empresa."],["Cliente Exemplo 02","Sistema Web","Mais velocidade e eficiência para a operação."],["Cliente Exemplo 03","Branding","Identidade visual reposicionada para o mercado."],["Cliente Exemplo 04","E-commerce","Mais vendas com uma loja rápida e moderna."]],
+ci:["Melhoria na presença digital","Otimização de processos","Melhor experiência para clientes","Modernização da marca"],cab:"Descreva aqui o que a empresa faz, qual era a necessidade e o problema a resolver."},
+en:{wel:"Welcome to",n1:"Home",n2:"Services",n3:"Success Stories",n4:"About Us",n5:"Contact",s0:"Web Development & Websites",s1:"Custom Software",s2:"Visual Identity & Branding",
+h1:"Turning Ideas into <em>Digital Solutions</em>",h2a:"From thought",h2b:"to <em>Visibility</em>",tag:"High performance for every problem.",
+sv:[{d:"We build fast, elegant corporate sites, online stores and web applications.",w:"Companies that want a strong digital presence that converts.",b:"Speed, SEO, premium design and a flawless experience.",s:"Corporate sites, e-commerce, landing pages, performance tuning."},{d:"We develop systems, apps and integrations built around your process.",w:"Operations that outgrew spreadsheets and generic tools.",b:"Efficiency, automation, scalability and control.",s:"Web systems, apps, APIs, integrations and AI solutions."},{d:"We build the strategic visual foundation of your brand.",w:"New businesses or those needing repositioning.",b:"Recognition, consistency and clear positioning.",s:"Logos, palette, brand guide, social posts and visual materials."}],
+lab:["What we do","Who it’s for","Benefits","Main solutions"],
+c1:"Numbers that prove.",c2:"Deliveries that matter.",cs:"View Case Study",live:"View Live Project",imp:"Impact generated",tech:"Technologies used",abt:"About the client",
+dep:"Client testimonial goes here. Replace with a real account of results and experience.",depa:"Client Name — Company",cta:"Shall we turn your next challenge into a solution?",wa:"Chat on WhatsApp",
+fh:"Questions we get asked most",fs:"We gathered some of the main questions.",
+faq:[["What kinds of projects does Arba build?","We build websites, online stores and web systems, plus a specialized team to create and improve your company’s visual identity, including logos, brand colors and standout posts."],["How does building a visual identity work?","We analyze your company and identify your market niche, then build a strategic visual foundation for your positioning. We present options so you take part in the process and choose the direction that best represents you."],["How long does a project take?","It depends on complexity. <b>Performance and optimization:</b> 3 to 5 business days. <b>Corporate sites:</b> 2 to 4 weeks. <b>Custom systems, integrations and AI:</b> timeline defined in the technical proposal after the initial diagnosis."],["How is project cost calculated?","Prices are based on each project’s needs, features and requirements, so the proposal fits each client’s reality and goals."],["Do you serve all of Brazil?","Yes. Our operation is 100% digital, so distance is never a barrier. We hold video meetings, keep direct follow-up channels and deliver with the same speed wherever you are."],["What kinds of companies do you serve?","Businesses of all sizes and segments, from local businesses and freelancers to established operations and growing startups. Our method adapts to each client’s business model."]],
+ab1:"Technology is not just code.<br><em>It’s a solution.</em>",ab2:"Arba Solutions was born to turn ideas, challenges and needs into digital solutions that truly make sense for each business.",
+pl:[["We understand","Before building anything, we understand the problem, the business and each client’s real needs."],["We create","We turn ideas and challenges into strategic, visually striking digital experiences."],["We develop","We build modern, fast, scalable solutions ready to grow with your business."],["We evolve","We don’t only think about delivery. We think about the future and what comes next."]],
+ab3:"We don’t just build projects.<br><em>We build possibilities.</em>",ct1:"Your problem may be a few steps from the <em>solution.</em>",ct2:"Talk directly to the people who build.",ct3:"Questions, quotes or support?",fd:"Turning ideas into digital solutions.",cp:"© Arba Solutions — All rights reserved.",
+cases:[["Sample Client 01","Website","A new digital presence for the company."],["Sample Client 02","Web System","More speed and efficiency for operations."],["Sample Client 03","Branding","Visual identity repositioned for the market."],["Sample Client 04","E-commerce","More sales with a fast, modern store."]],
+ci:["Stronger digital presence","Optimized processes","Better customer experience","Modernized brand"],cab:"Describe here what the company does, its need and the problem to solve."}};
+const G=["linear-gradient(135deg,#1f5fff,#0b1d5c)","linear-gradient(135deg,#0b1220,#3a6bff)","linear-gradient(135deg,#6aa0ff,#1f5fff)","linear-gradient(135deg,#dfe8ff,#1f5fff)"];
+const STACK=["React","Next.js","Node.js","Python","APIs","Figma"];
+let L="pt",sel=-1;
+function render(){const t=T[L];document.documentElement.lang=L==="pt"?"pt-BR":"en";$("#lang").textContent=L.toUpperCase();
+$$("[data-i]").forEach(e=>e.innerHTML=t[e.dataset.i]);$$(".wa").forEach(a=>a.href=WA);
+$("#sg").innerHTML=[0,1,2].map(i=>`<button class="sc${sel===i?" sel":""}" data-k="${i}"><b>0${i+1}</b><h3>${t["s"+i]}</h3></button>`).join("");
+$("#fl").innerHTML=t.faq.map(f=>`<div class="q"><div><span>${f[0]}</span><b>+</b></div><div class="a">${f[1]}</div></div>`).join("");
+$("#pg").innerHTML=t.pl.map((p,i)=>`<div class="pil"><strong>0${i+1}</strong><div><h3>${p[0]}</h3><p>${p[1]}</p></div></div>`).join("");
+$("#tr").innerHTML=t.cases.map((c,i)=>`<article class="cc"><div class="mk" style="background:${G[i]}"></div><div class="tg"><i>${c[1]}</i></div><h3>${c[0]}</h3><p>${c[2]}</p><a data-c="${i}">${t.cs} →</a></article>`).join("");
+if(sel>-1)detail();io()}
+function detail(){const t=T[L],s=t.sv[sel],k=["d","w","b","s"];$("#st").innerHTML=k.map((x,i)=>`<h4>${t.lab[i]}</h4><p>${s[x]}</p>`).join("");$("#vc").style.background=G[sel];$("#sg").classList.add("has");$("#sd").classList.add("open")}
+function pick(i){sel=i;$$(".sc").forEach((e,j)=>e.classList.toggle("sel",j===i));detail()}
+document.addEventListener("click",e=>{const t=T[L];let x;
+if(x=e.target.closest(".sc"))pick(+x.dataset.k);
+if(x=e.target.closest("[data-s]")){setTimeout(()=>pick(+x.dataset.s),500)}
+if(x=e.target.closest(".q"))x.classList.toggle("open"),x.querySelector("b").textContent="+";
+if(x=e.target.closest("[data-c]")){const c=t.cases[+x.dataset.c],i=+x.dataset.c;
+$("#mo").innerHTML=`<h2>${c[0]}</h2><h4>${t.abt}</h4><p style="color:var(--mut);max-width:640px">${t.cab}</p><div class="gal">${[0,1,2].map(n=>`<div style="background:${G[(i+n)%4]}"></div>`).join("")}</div><a class="btn" href="#" target="_blank" rel="noopener">${t.live} ↗</a><div class="two"><div><h4>${t.imp}</h4>${t.ci.map(z=>`<p>• ${z}</p>`).join("")}</div><div><h4>${t.tech}</h4><div class="tk">${STACK.map(z=>`<i>${z}</i>`).join("")}</div></div></div>`;
+$("#md").classList.add("open");document.body.style.overflow="hidden"}
+if(e.target.closest("nav a"))$("#nv").classList.remove("open")});
+function closeM(){$("#md").classList.remove("open");document.body.style.overflow=""}
+$("#mx").onclick=closeM;addEventListener("keydown",e=>e.key==="Escape"&&closeM());
+$("#lang").onclick=()=>{L=L==="pt"?"en":"pt";render()};
+$("#bg").onclick=()=>$("#nv").classList.toggle("open");
+$("#pv").onclick=()=>$("#tr").scrollBy({left:-440,behavior:"smooth"});$("#nx").onclick=()=>$("#tr").scrollBy({left:440,behavior:"smooth"});
+$("#vc").parentNode.onmousemove=e=>{const r=e.currentTarget.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;$("#vc").style.transform=`rotateY(${x*24}deg) rotateX(${-y*24}deg)`};
+$("#vc").parentNode.onmouseleave=()=>$("#vc").style.transform="";
+const secs=["inicio","servicos","casos","sobre","contato"];
+function onScroll(){const y=scrollY,p=Math.min(y/(innerHeight*.6),1);
+$("#hd").style.setProperty("--p",Math.min(y/160,1));
+const h=$("#hi");h.style.opacity=1-p;h.style.transform=`translateY(${-p*70}px) scale(${1-p*.08})`;
+let cur=0;secs.forEach((s,i)=>{if($("#"+s).getBoundingClientRect().top<innerHeight*.4)cur=i});
+$$("nav a.l").forEach(a=>a.classList.toggle("act",a.getAttribute("href")==="#"+secs[cur]&&!a.closest(".dd div")))}
+addEventListener("scroll",onScroll,{passive:true});
+let obs;function io(){obs&&obs.disconnect();obs=new IntersectionObserver(es=>es.forEach(e=>e.isIntersecting&&e.target.classList.add("on")),{threshold:.3});$$(".rv,.pil").forEach(e=>obs.observe(e))}
+render();onScroll();
+setTimeout(()=>{$("#intro").classList.add("up");setTimeout(()=>$("#intro").remove(),1300)},2800);
+</script>
+</body>
+</html>
